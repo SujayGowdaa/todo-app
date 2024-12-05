@@ -1,9 +1,9 @@
-TypeScript Basics
+** TypeScript Basics **
+
 What is TypeScript?
-
 A superset of JavaScript that adds static typing and other features to improve code reliability and developer productivity.
-Why Use TypeScript?
 
+Why Use TypeScript?
 Detect errors at compile time.
 Better code navigation and refactoring with IDE support.
 Stronger collaboration with explicit types.
@@ -12,8 +12,8 @@ Key Features
 
 1. Types
    Primitive Types: string, number, boolean, null, undefined, symbol, bigint.
-   Special Types:
 
+   Special Types:
    any: Opt-out of type checking.
    unknown: Safer alternative to any.
    void: No return value.
