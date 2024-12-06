@@ -19,8 +19,8 @@ export default function AddTask({ setTodos }: PropTypes) {
     <form className=' flex' onSubmit={(e) => handleSubmit(e)}>
       <input
         type='text'
-        placeholder='name a task'
-        className=' px-4 py-2 text-lg rounded-l-md w-full outline-none bg-purple-100 focus:bg-white placeholder:capitalize transition-all duration-200'
+        placeholder='Enter task'
+        className=' px-4 py-2 text-lg rounded-l-md w-full outline-none bg-purple-100 focus:bg-white transition-all duration-200'
         onChange={(e) => setTask(e.target.value)}
         value={task}
       />
