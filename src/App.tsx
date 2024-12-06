@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import AddTask from './components/AddTask';
+import { Todo } from './model';
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   console.log(todos);
   return (
