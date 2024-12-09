@@ -30,7 +30,7 @@ export default function AddTask({ setTodos }: PropTypes) {
         onChange={(e) => setTodo(e.target.value)}
         value={todo}
       />
-      <button className=' flex items-center gap-2 uppercase px-12 py-2 font-semibold  text-xl text-orange-800 hover:text-orange-800 bg-orange-400 hover:bg-orange-500 transition-all duration-200'>
+      <button className=' flex items-center gap-2 uppercase px-12 py-2 font-semibold  text-xl text-yellow-800 hover:text-yellow-800 bg-yellow-400 hover:bg-yellow-500 transition-all duration-200'>
         add <FaPlusCircle className=' text-xl' />
       </button>
     </form>

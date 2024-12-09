@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-primary {
+  @apply w-10 h-10 rounded-full flex items-center justify-center text-xl text-gray-200 hover:bg-yellow-400 hover:text-yellow-800 bg-violet-800;
+}
+.btn-primary-active {
+  @apply w-10 h-10 rounded-full flex items-center justify-center text-xl text-gray-200 hover:bg-violet-800 hover:text-violet-300 bg-yellow-800;
+}
+
+.todo {
+  @apply bg-violet-500 hover:bg-violet-600 outline-violet-400 hover:outline-violet-500 capitalize text-lg text-white flex justify-between gap-4 px-4 py-4 hover:cursor-pointer outline outline-2 shadow-md shadow-violet-950 hover:translate-x-1 hover:translate-y-1 transition-all duration-100;
+}
+.todo-done {
+  @apply bg-yellow-500 hover:bg-yellow-600 outline-yellow-400 hover:outline-yellow-500 capitalize text-lg text-white flex justify-between gap-4 px-4 py-4 hover:cursor-pointer outline outline-2 shadow-md shadow-violet-950 hover:translate-x-1 hover:translate-y-1 transition-all duration-100;
+}

@@ -1,46 +1,105 @@
+import { useState } from 'react';
 import { FaCheckCircle, FaTimesCircle, FaTrash } from 'react-icons/fa';
+import { MdEdit } from 'react-icons/md';
 
 interface PropTypes {
   data: { id: string; todo: string; isDone: boolean };
   i: number;
+  handleClickTaskToggle: (id: string) => void;
+  handleClickEdit: (id: string, value: string) => void;
+  handleClickDelete: (id: string) => void;
 }
 
-export default function TodoList({ data, i }: PropTypes) {
+export default function TodoList({
+  data,
+  i,
+  handleClickTaskToggle,
+  handleClickEdit,
+  handleClickDelete,
+}: PropTypes) {
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [editValue, setEditValue] = useState<string>(data.todo);
+
   return (
-    <li
-      key={data.id}
-      className={` ${
-        data.isDone
-          ? ' bg-yellow-500 hover:bg-yellow-600 outline-yellow-400 hover:outline-yellow-500'
-          : ' bg-violet-500 hover:bg-violet-600 outline-violet-400 hover:outline-violet-500'
-      } capitalize text-lg text-white flex justify-between gap-4 px-4 py-4  hover:cursor-pointer outline outline-2 shadow-md shadow-violet-950 hover:translate-x-1 hover:translate-y-1 transition-all duration-100 group`}
-    >
-      <div className=' flex items-center gap-4'>
+    <li className={` ${data.isDone ? 'todo-done' : 'todo'} `}>
+      <div className=' flex items-center gap-4 w-full'>
         <span
           className={` ${
             data.isDone
               ? ' bg-yellow-800 text-yellow-200 group-hover:bg-yellow-900'
               : 'bg-violet-800 text-violet-200 group-hover:bg-violet-900'
-          } rounded-full w-8 h-8 flex justify-center items-center text-sm font-medium`}
+          } rounded-full w-10 h-10 flex justify-center items-center font-medium shrink-0`}
         >{`${i < 10 ? `0${i}` : i}`}</span>
-        <p className=' capitalize text-lg font-medium text-gray-100'>
-          {data.todo}
-        </p>
-      </div>
-      <div className=' flex gap-4'>
-        {data.isDone ? (
-          <button className=' capitalize rounded-r-lg text-2xl'>
-            <FaTimesCircle />
-          </button>
+        {isEdit ? (
+          <input
+            type='text'
+            className=' text-black px-2 py-1 outline-yellow-400 w-full h-full'
+            defaultValue={editValue}
+            onChange={(e) => setEditValue(e.target.value)}
+          />
         ) : (
-          <button className=' capitalize rounded-r-lg text-2xl'>
+          <p
+            className={`${
+              data.isDone && ' line-through'
+            } capitalize text-lg font-medium text-gray-100`}
+          >
+            {data.todo}
+          </p>
+        )}
+      </div>
+      {isEdit ? (
+        <div className=' flex items-center gap-4'>
+          <button
+            className={`${data.isDone ? 'btn-primary-active' : 'btn-primary'}`}
+            onClick={() => {
+              handleClickEdit(data.id, editValue);
+              setIsEdit(false);
+            }}
+          >
             <FaCheckCircle />
           </button>
-        )}
-        <button className=' capitalize rounded-r-lg text-2xl'>
-          <FaTrash />
-        </button>
-      </div>
+          <button
+            className={`${data.isDone ? 'btn-primary-active' : 'btn-primary'}`}
+            onClick={() => setIsEdit(false)}
+          >
+            <FaTimesCircle />
+          </button>
+        </div>
+      ) : (
+        <div className=' flex items-center gap-4'>
+          {data.isDone ? (
+            <button
+              className={`${
+                data.isDone ? 'btn-primary-active' : 'btn-primary'
+              }`}
+              onClick={() => handleClickTaskToggle(data.id)}
+            >
+              <FaTimesCircle />
+            </button>
+          ) : (
+            <button
+              className={`${
+                data.isDone ? 'btn-primary-active' : 'btn-primary'
+              }`}
+              onClick={() => handleClickTaskToggle(data.id)}
+            >
+              <FaCheckCircle />
+            </button>
+          )}
+          <button
+            className={`${data.isDone ? 'btn-primary-active' : 'btn-primary'}`}
+            onClick={() => setIsEdit(true)}
+          >
+            <MdEdit />
+          </button>
+          <button
+            className={`${data.isDone ? 'btn-primary-active' : 'btn-primary'}`}
+            onClick={() => handleClickDelete(data.id)}
+          >
+            <FaTrash />
+          </button>
+        </div>
+      )}
     </li>
   );
 }
